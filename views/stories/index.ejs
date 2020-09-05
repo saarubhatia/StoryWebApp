@@ -1,0 +1,41 @@
+<%-include('../partials/header') %>
+<div class="container-fluid">
+    <header>
+        
+        <div class="center info-center mt-5">
+            <h1>Welcome to Stories Web App</h1>
+            <p>View our hand-picked stories by the authors from all over the world</p>
+            <p>
+                <a class="btn btn-primary btn-large" href="/stories/new">Add New Story</a>
+            </p>
+        </div>
+        
+    </header>
+   
+</div><div class="container">
+    <div class="row text-center center">
+        <% if(stories.length==0){ %>
+        <div class="col-md-12 alert alert-info" role="alert">
+            No stories found!<br>
+        </div>
+        <% } %>
+        <% stories.forEach(function(story){ %>
+        <div class="col-md-3 col-sm-6 ">
+                <div class="card text-white bg-dark mb-3 mt-5" style="max-width: 18rem;">
+                    <div class="img-thumbnail">
+                        <img src="<%= story.image %>" class="card-img-top" style="width: 100%;">
+                        <div class="card-body">
+                            <a href="/stories/<%= story._id %>">
+                            <h4 class="card-title"><%=story.title %></h4>
+                            </a>
+                        </div>
+                        <div class="card-footer ">
+                            <small class="text-muted">Last updated : <%= moment(story.createdAt).fromNow() %></small>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+<%-include('../partials/footer') %>

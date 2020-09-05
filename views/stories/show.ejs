@@ -1,0 +1,42 @@
+<%-include('../partials/header') %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Story Web App</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%=specificStory.image%>">
+                <div class="caption-full">
+                    <h4 style="float:right">Read Count: <%=specificStory.reads.length%></h4>
+                    <h4><a><%=specificStory.title%></a></h4>
+                   
+                    <p class="lead"><%-specificStory.storyBody%></p>
+                    <p>
+                        <i>Published by <a style="color:black"
+                                href="/users/<%=specificStory.author.id%>"><%=specificStory.author.username%></a>,
+                            <%= moment(specificStory.createdAt).fromNow() %></i>
+                    </p>
+                    <% if(currentUser && specificStory.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                    <div class="btn-group" role="group">
+                           
+                            <a class="btn btn-outline-dark btn-lg " href="/stories/<%= specificStory._id %>/edit">Edit</a>
+
+                            <form id="delete-form" action="/stories/<%=specificStory._id%>?_method=DELETE"
+                                method="POST">
+                                <button class="btn btn-outline-dark btn-lg ml-4">Delete</button>
+                            </form>
+                        
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%-include('../partials/footer') %>
