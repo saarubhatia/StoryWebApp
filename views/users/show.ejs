@@ -41,7 +41,7 @@
             <p class="lead" style="text-align: center; margin-top: 10px;"><%= user.firstName %>'s Stories</p>
             <div class="list-group">
                 <% story.forEach(function(story){ %>
-                    <a class="list-group-item list-group-item-action" href="/stories/<%=story.id%>"><%= story.name %></a>
+                    <a class="list-group-item list-group-item-action" href="/stories/<%=story.id%>"><%= story.title %></a>
                 <% }) %>
             </div>
         <% } else { %>
